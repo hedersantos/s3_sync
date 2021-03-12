@@ -34,8 +34,9 @@ function prompt_for_user_confirmation {
     # to go ahead.
     #---------------------------------------------------------------------------
 
-    # use loop to garantee prompt display
+    # use loop to query user until expected criteria is met
     while true; do
+    
         # prompt user and store reponse in "yn" variable
         read -p "EXECUTE \"$cmd_string\"? (y/n)" yn
 
