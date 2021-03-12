@@ -19,21 +19,17 @@ if [ $# == 1 ]; then
     # append "remote_suffix" variable to s3 bucket name
     remote_path=s3://hsantos-backup/$remote_suffix
 
-    # handle syncronization
+    # handle synchronization options
     case $1 in
-
+        # download
         '--down')
-            echo 'down'
-
-            echo 'aws s3 sync $remote_path $local_path'
+            aws s3 sync $remote_path $local_path
         ;;
-
+        # upload
         '--up')
-            echo 'up'
-
-            echo 'aws s3 sync $local_path $remote_path'
+            aws s3 sync $local_path $remote_path
         ;;
-
+        # unknown (catch-all case)
         *)
             echo 'INFO: unknown argument received.'
     esac
