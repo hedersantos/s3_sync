@@ -38,7 +38,7 @@ function prompt_for_user_confirmation {
     while true; do
     
         # prompt user and store reponse in "yn" variable
-        read -p "EXECUTE \"$cmd_string\"? (y/n)" yn
+        read -p "EXECUTE \"$cmd_string\"? (y/n) " yn
 
         # evaluate "yn" variable contents
         case $yn in
