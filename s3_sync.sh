@@ -24,8 +24,9 @@ function suggest_bucket_prefix {
     # notice "1024" upper bound has benn arbitrarily chosen
     local prefix_suggestion=$(pwd | cut -d '/' -f 4-1024)
 
-    # append "prefix_suggestion" variable to s3 bucket name
-    echo s3://hsantos-backup/$prefix_suggestion     
+    # append "prefix_suggestion" variable to s3 bucket name. Remember S3 Bucket
+    # name has been previously defined in an environment variable.
+    echo $S3_SYNC_BUCKET_NAME/$prefix_suggestion     
 }
 
 function prompt_for_user_confirmation {
