@@ -1,14 +1,14 @@
 #! /bin/bash
 
 #-------------------------------------------------------------------------------
-# IMPORTANT: 
+# IMPORTANT:
 #
 #   AWS CLI must be installed in your computer for this script to run properly.
 #
 # THIS SCRIPT DOES
 #
-# synchronize data between the directory it's called and an S3 Bucket. Use one 
-# of the options below to set synchronization direction:
+# synchronize data between the directory it's called upon and an S3 Bucket. Use
+# one of the options below to set sync direction:
 #
 # --down : FROM S3 Bucket TO local directory
 # --up : FROM local directory TO S3 Bucket
@@ -31,8 +31,8 @@ function suggest_bucket_prefix {
 
 function prompt_for_user_confirmation {
     #---------------------------------------------------------------------------
-    #  Print prepared AWS CLI command to issue and confirm its execution is OK
-    # to go ahead.
+    #  Print out prepared AWS CLI command to be issued and confirm its execution
+    # is OK to go ahead.
     #---------------------------------------------------------------------------
 
     # use loop to query user until expected criteria is met
