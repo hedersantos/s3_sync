@@ -1,8 +1,57 @@
 # s3_sync
 
-## This README file
-
 ## About `s3_sync`  
+
+Synchronize entire folders from local machine to a given AWS S3 Bucket.  
+
+Feel free to contribute and suggest improvements to it.  
+
+### Prerequisites  
+
+This function leverages AWS CLI's functionality to simplify synchronizing folders  
+to S3 Bucket. Install AWS CLI to be able to use this function.  
+
+### Usage Examples
+
+#### Uploading `~/Pictures/pets` folder to the Cloud: sync upwards  
+
+```bash
+# go into the folder you want to sync
+cd ~/Pictures/pets
+
+# invoke helper function
+$ s3_sync --up
+
+# function appends path to current folder* to S3 bucket env var
+EDIT or press ENTER to confirm S3 location: s3://bucket-name/Pictures/pets
+
+# user confirms whether AWS CLI command should be executed
+EXECUTE "aws s3 sync /home/john/Pictures/pets s3://bucket-name/Pictures/pets"? (y/n) 
+
+# upload process begins: AWS CLI output follows
+STARTED sync operation...
+```
+
+Imagine now you add or update files hosted in this S3 bucket.
+
+#### Fetching new and changed files from the Cloud: sync downwards  
+
+```bash
+# go into the folder you want to sync
+cd ~/Pictures/pets
+
+# invoke helper function
+$ s3_sync --down
+
+# confirm S3 "path" from which to fetch data
+EDIT or press ENTER to confirm S3 location: s3://bucket-name/Pictures/pets
+
+# confirm AWS CLI command to be issued
+EXECUTE "aws s3 sync s3://bucket-name/Pictures/pets /home/john/Pictures/pets"? (y/n) y
+
+# download process begins: AWS CLI output follows
+STARTED sync operation...
+```
 
 ### Function setup  
 
@@ -11,53 +60,32 @@ to the S3 Bucket where your data will be stored.
 To add this on Ubuntu, edit the `s3_sync_bucket_name.sh` script and copy it to  
 `/etc/profile.d` directory.  
 
-Then add the function below to your `~/.bashrc` file:  
+Then add the function below to your `~/.bashrc` or `~/.zshrc` file:  
+
+> REMEMBER to change `path_to_repo` with the path where you cloned this repo.
 
 > \# s3_sync  
 function s3_sync () {  
-&nbsp;&nbsp;&nbsp;&nbsp;# check whether script exists  
-&nbsp;&nbsp;&nbsp;&nbsp;if [ -e $HOME/path_to_repo/s3_sync/s3_sync.sh ]  
-&nbsp;&nbsp;&nbsp;&nbsp;# execute script and pass all arguments to it  
-&nbsp;&nbsp;&nbsp;&nbsp;then bash $HOME/path_to_repo/s3_sync/s3_sync.sh $@  
-&nbsp;&nbsp;&nbsp;&nbsp;fi  
+&emsp; # check whether script exists  
+&emsp; if [ -e $HOME/path_to_repo/s3_sync/s3_sync.sh ]  
+&emsp; # execute script and pass all arguments to it  
+&emsp; then bash $HOME/path_to_repo/s3_sync/s3_sync.sh $@  
+&emsp; fi  
 }
-
-### Ideas  
-
-* use `S3 Standard - Infrequent Access` storage class to reduce costs;
-* set backup S3 Bucket as environment variable;
-* add script to `.bashrc` file for convenience;
 
 *suggested reads:*  
 
 * [`bash read` with default answer](<https://superuser.com/questions/835824/use-read-in-bash-script-with-a-standard-answer>)  
-
 * [`WSL2` file explorer access](<https://devblogs.microsoft.com/commandline/access-linux-filesystems-in-windows-and-wsl-2/>)  
-
 * [`bash` prompt Yes/No/Cancel](<https://stackoverflow.com/questions/226703/how-do-i-prompt-for-yes-no-cancel-input-in-a-linux-shell-script>)  
-
 * [`bash` prompt for user confirmation](<https://stackoverflow.com/questions/1885525/how-do-i-prompt-a-user-for-confirmation-in-bash-script>)  
-
 * [`aws cli` check prefix existence](<https://stackoverflow.com/questions/56961533/is-there-a-way-to-check-if-folder-exists-in-s3-using-aws-cli>)  
-
 * [`.bashrc` file usage](<https://unix.stackexchange.com/questions/129143/what-is-the-purpose-of-bashrc-and-how-does-it-work>)  
-
 * [bash aliases and functions tutorial](<https://opensource.com/article/19/7/bash-aliases>)  
-
 * [`bash $* vs $@`](<https://unix.stackexchange.com/questions/129072/whats-the-difference-between-and>)  
-
 * [invoke shell script from `~/.bashrc` file](<https://askubuntu.com/questions/767842/how-can-i-run-a-shell-script-from-bashrc-file>)  
-
 * [Removing characters from string in `bash`](<https://linuxhint.com/remove_characters_string_bash/>)  
-
 * [Can't find `.bash_profile` in Ubuntu](<https://askubuntu.com/questions/510709/i-cannot-find-bash-profile-in-ubuntu>)  
-
 * [`.bash_profile` vs `.profile`](<https://superuser.com/questions/171035/profile-or-bash-profile>)  
-
 * [bash conditional expressions](<https://www.gnu.org/software/bash/manual/html_node/Bash-Conditional-Expressions.html>)  
-
-* [`/etc/profile.d` scripts execution](<https://serverfault.com/questions/434321/when-are-scripts-inside-etc-profile-d-executed>)  
-
-* [](<>)  
-
-* [](<>)  
+* [`/etc/profile.d` scripts execution](<https://serverfault.com/questions/434321/when-are-scripts-inside-etc-profile-d-executed>)
