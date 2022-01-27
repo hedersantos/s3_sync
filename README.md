@@ -9,7 +9,7 @@ Feel free to contribute and suggest improvements to it.
 ### Prerequisites  
 
 This function leverages AWS CLI's functionality to simplify synchronizing folders  
-to S3 Bucket. Install AWS CLI to be able to use this function.  
+to S3 Buckets. Install AWS CLI before attempting to use this function.  
 
 ### Usage Examples
 
