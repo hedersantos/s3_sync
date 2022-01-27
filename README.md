@@ -22,10 +22,10 @@ cd ~/Pictures/pets
 # invoke helper function
 $ s3_sync --up
 
-# function appends path to current folder* to S3 bucket env var
+# prompt: function appends path to current folder* to S3 bucket env var
 EDIT or press ENTER to confirm S3 location: s3://bucket-name/Pictures/pets
 
-# user confirms whether AWS CLI command should be executed
+# prompt: user confirms whether AWS CLI command should be executed
 EXECUTE "aws s3 sync /home/john/Pictures/pets s3://bucket-name/Pictures/pets"? (y/n) 
 
 # upload process begins: AWS CLI output follows
@@ -43,10 +43,10 @@ cd ~/Pictures/pets
 # invoke helper function
 $ s3_sync --down
 
-# confirm S3 "path" from which to fetch data
+# prompt: confirm S3 "path" from which to fetch data
 EDIT or press ENTER to confirm S3 location: s3://bucket-name/Pictures/pets
 
-# confirm AWS CLI command to be issued
+# prompt: confirm AWS CLI command to be issued
 EXECUTE "aws s3 sync s3://bucket-name/Pictures/pets /home/john/Pictures/pets"? (y/n) y
 
 # download process begins: AWS CLI output follows
@@ -62,16 +62,18 @@ To add this on Ubuntu, edit the `s3_sync_bucket_name.sh` script and copy it to
 
 Then add the function below to your `~/.bashrc` or `~/.zshrc` file:  
 
-> REMEMBER to change `path_to_repo` with the path where you cloned this repo.
+**REMEMBER** to change `path_to_repo` with the path where you cloned this repo.
 
-> \# s3_sync  
+```bash 
+# s3_sync  
 function s3_sync () {  
-&emsp; # check whether script exists  
-&emsp; if [ -e $HOME/path_to_repo/s3_sync/s3_sync.sh ]  
-&emsp; # execute script and pass all arguments to it  
-&emsp; then bash $HOME/path_to_repo/s3_sync/s3_sync.sh $@  
-&emsp; fi  
+    # check whether script exists  
+    if [ -e $HOME/path_to_repo/s3_sync/s3_sync.sh ]  
+    # execute script and pass all arguments to it  
+    then bash $HOME/path_to_repo/s3_sync/s3_sync.sh $@  
+    fi  
 }
+```
 
 *suggested reads:*  
 
