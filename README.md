@@ -4,7 +4,7 @@
 
 Synchronize entire folders from local machine to a given AWS S3 Bucket.  
 
-Feel free to contribute and suggest improvements to it.  
+Feel free to contribute and suggest improvements to this project.  
 
 ### Prerequisites  
 
